@@ -25,6 +25,8 @@ struct DayView: View {
     @State private var isEditing = false
     @State private var editingEvent: CalendarEvent?
     @Environment(\.dismiss) var dismiss
+    // Добавляем доступ к проектам
+    let savedProjects: [SavedProject]
     
     var eventsForDay: [CalendarEvent] {
         let calendar = Calendar.current
@@ -38,6 +40,19 @@ struct DayView: View {
         .sorted { $0.time < $1.time }
     }
     
+    // Получаем проекты с дедлайном на этот день
+    var projectsForDay: [SavedProject] {
+        let calendar = Calendar.current
+        let startOfDay = calendar.startOfDay(for: date)
+        
+        return savedProjects.filter { project in
+            if let deadline = project.deadline {
+                return calendar.startOfDay(for: deadline) == startOfDay
+            }
+            return false
+        }
+    }
+    
     private func deleteEvents(at offsets: IndexSet) {
         for index in offsets {
             let event = eventsForDay[index]
@@ -49,27 +64,94 @@ struct DayView: View {
         ZStack {
             Color.customDarkNavy.ignoresSafeArea()
             
-            VStack {
-                List {
-                    ForEach(eventsForDay) { event in
-                        EventRow(
-                            event: event,
-                            onEdit: {
-                                editingEvent = event
-                                newEventTitle = event.title
-                                newEventNotes = event.notes
-                                newEventTime = event.time
-                                isEditing = true
-                                showingEventSheet = true
-                            },
-                            onDelete: deleteEvent
-                        )
+            ScrollView {
+                VStack(spacing: 20) {
+                    // Секция дедлайнов проектов
+                    if !projectsForDay.isEmpty {
+                        VStack(alignment: .leading, spacing: 15) {
+                            Text("Project Deadlines")
+                                .font(.title2)
+                                .foregroundColor(.white)
+                                .padding(.horizontal)
+                            
+                            ForEach(projectsForDay) { project in
+                                VStack(alignment: .leading, spacing: 10) {
+                                    Text(project.projectName)
+                                        .font(.headline)
+                                        .foregroundColor(.white)
+                                    
+                                    ForEach(project.goals) { goal in
+                                        VStack(alignment: .leading, spacing: 5) {
+                                            HStack {
+                                                Text(goal.text)
+                                                    .foregroundColor(.white)
+                                                Spacer()
+                                                Text(goal.progress)
+                                                    .foregroundColor(.customAccent)
+                                            }
+                                            
+                                            // Прогресс-бар
+                                            GeometryReader { geometry in
+                                                let total = Double(Int(goal.totalNumber) ?? 0)
+                                                let remaining = Double(Int(goal.remainingNumber) ?? 0)
+                                                let progress = total > 0 ? (total - remaining) / total : 0
+                                                
+                                                ZStack(alignment: .leading) {
+                                                    Rectangle()
+                                                        .fill(Color.gray.opacity(0.3))
+                                                        .frame(height: 4)
+                                                    
+                                                    Rectangle()
+                                                        .fill(Color.customAccent)
+                                                        .frame(width: geometry.size.width * progress, height: 4)
+                                                }
+                                            }
+                                            .frame(height: 4)
+                                        }
+                                    }
+                                }
+                                .padding()
+                                .background(Color.customNavy)
+                                .cornerRadius(12)
+                                .padding(.horizontal)
+                            }
+                        }
+                        
+                        Divider()
+                            .background(Color.gray)
+                            .padding(.vertical)
                     }
-                    .onDelete(perform: deleteEvents)
+                    
+                    // Секция событий
+                    VStack(alignment: .leading, spacing: 15) {
+                        Text("Events")
+                            .font(.title2)
+                            .foregroundColor(.white)
+                            .padding(.horizontal)
+                        
+                        ForEach(eventsForDay) { event in
+                            EventRow(
+                                event: event,
+                                onEdit: {
+                                    editingEvent = event
+                                    newEventTitle = event.title
+                                    newEventNotes = event.notes
+                                    newEventTime = event.time
+                                    isEditing = true
+                                    showingEventSheet = true
+                                },
+                                onDelete: deleteEvent
+                            )
+                            .padding(.horizontal)
+                        }
+                    }
                 }
-                .listStyle(.plain)
-                
-                // Добавляем кнопку внизу экрана
+                .padding(.vertical)
+            }
+            
+            // Кнопка добавления события
+            VStack {
+                Spacer()
                 Button {
                     editingEvent = nil
                     newEventTitle = ""
@@ -180,6 +262,7 @@ struct EventRow: View {
 
 struct CalendarUnderlineModifier: ViewModifier {
     let hasEvents: (Date) -> Bool
+    let getDateColor: (Date) -> Color
     let selectedDate: Date
     
     func body(content: Content) -> some View {
@@ -193,7 +276,7 @@ struct CalendarUnderlineModifier: ViewModifier {
                     if let date = calendar.date(from: DateComponents(year: currentYear, month: currentMonth, day: day)) {
                         if hasEvents(date) {
                             Rectangle()
-                                .fill(Color.customAccent)
+                                .fill(getDateColor(date))
                                 .frame(width: 25, height: 1)
                                 .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
                         }
@@ -207,21 +290,23 @@ struct CalendarUnderlineModifier: ViewModifier {
 struct CustomCalendarView: View {
     @Binding var selectedDate: Date
     let hasEvents: (Date) -> Bool
+    let getDateColor: (Date) -> Color
     let onDateSelected: () -> Void
     
     private var calendar: Calendar {
         var cal = Calendar.current
-        cal.firstWeekday = 1  // 1 = Воскресенье, 2 = Понедельник
-        cal.locale = Locale(identifier: "en_US")  // Используем US локаль для консистентности
+        cal.firstWeekday = 1
+        cal.locale = Locale(identifier: "en_US")
         return cal
     }
     
-    private let daysOfWeek = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]  // Убедимся, что порядок соответствует календарю
+    private let daysOfWeek = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]
     @State private var currentMonth: Date
     
-    init(selectedDate: Binding<Date>, hasEvents: @escaping (Date) -> Bool, onDateSelected: @escaping () -> Void) {
+    init(selectedDate: Binding<Date>, hasEvents: @escaping (Date) -> Bool, getDateColor: @escaping (Date) -> Color, onDateSelected: @escaping () -> Void) {
         self._selectedDate = selectedDate
         self.hasEvents = hasEvents
+        self.getDateColor = getDateColor
         self.onDateSelected = onDateSelected
         self._currentMonth = State(initialValue: selectedDate.wrappedValue)
     }
@@ -408,11 +493,68 @@ struct CalendarView: View {
         let calendar = Calendar.current
         let dateToCheck = calendar.startOfDay(for: date)
         
-        // Просто проверяем, есть ли хотя бы одно событие на эту дату
-        if selectedEvents.contains(where: { calendar.startOfDay(for: $0.date) == dateToCheck }) {
-            return true  // Есть события - подчеркиваем
+        // Проверяем события
+        let hasCalendarEvents = selectedEvents.contains { event in
+            calendar.startOfDay(for: event.date) == dateToCheck
         }
-        return false    // Нет событий - не подчеркиваем
+        
+        // Проверяем дедлайны проектов
+        let hasDeadlines = savedProjects.contains { project in
+            if let deadline = project.deadline {
+                return calendar.startOfDay(for: deadline) == dateToCheck
+            }
+            return false
+        }
+        
+        return hasCalendarEvents || hasDeadlines
+    }
+    
+    // Получаем цвет для даты (зеленый для дедлайнов, accent для обычных событий)
+    private func getDateColor(_ date: Date) -> Color {
+        let calendar = Calendar.current
+        let startOfDay = calendar.startOfDay(for: date)
+        
+        // Проверяем дедлайны
+        let hasDeadline = savedProjects.contains { project in
+            if let deadline = project.deadline {
+                return calendar.startOfDay(for: deadline) == startOfDay
+            }
+            return false
+        }
+        
+        return hasDeadline ? .green : .customAccent
+    }
+    
+    // Функция для форматирования оставшихся дней
+    private func formatRemainingDays(deadline: Date) -> String {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.day], from: Date(), to: deadline)
+        guard let days = components.day else { return "" }
+        
+        if days < 0 {
+            return "Overdue"
+        } else if days == 0 {
+            return "Due today"
+        } else if days == 1 {
+            return "1 day left"
+        } else {
+            return "\(days) days left"
+        }
+    }
+    
+    // Функция для определения цвета статуса дедлайна
+    private func deadlineStatusColor(deadline: Date) -> Color {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.day], from: Date(), to: deadline)
+        guard let days = components.day else { return .white }
+        
+        if days < 0 {
+            return .red
+        } else if days <= 3 {
+            return .orange
+        } else {
+            return .green
+        }
     }
     
     var body: some View {
@@ -424,11 +566,43 @@ struct CalendarView: View {
                     CustomCalendarView(
                         selectedDate: $selectedDate,
                         hasEvents: hasEvents,
+                        getDateColor: getDateColor,
                         onDateSelected: {
                             showDayView = true
                         }
                     )
                     .padding()
+                    
+                    // Показываем список дедлайнов на выбранную дату
+                    if let deadlines = getDeadlinesForSelectedDate() {
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text("Deadlines:")
+                                .font(.headline)
+                                .foregroundColor(.white)
+                            
+                            ForEach(deadlines, id: \.id) { project in
+                                if let deadline = project.deadline {
+                                    HStack {
+                                        Text(project.projectName)
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 17, weight: .medium))
+                                            .lineLimit(1)
+                                        
+                                        Spacer()
+                                        
+                                        Text(formatRemainingDays(deadline: deadline))
+                                            .foregroundColor(deadlineStatusColor(deadline: deadline))
+                                            .font(.system(size: 15, weight: .medium))
+                                    }
+                                    .padding(.vertical, 5)
+                                }
+                            }
+                        }
+                        .padding()
+                        .background(Color.customNavy)
+                        .cornerRadius(12)
+                        .padding(.horizontal)
+                    }
                     
                     Spacer()
                 }
@@ -476,7 +650,8 @@ struct CalendarView: View {
                         date: selectedDate,
                         selectedEvents: $selectedEvents,
                         saveEvents: saveEvents,
-                        deleteEvent: deleteEvent
+                        deleteEvent: deleteEvent,
+                        savedProjects: savedProjects
                     )
                 } label: {
                     EmptyView()
@@ -503,5 +678,20 @@ struct CalendarView: View {
         .onAppear {
             loadEvents()
         }
+    }
+    
+    // Функция для получения проектов с дедлайном на выбранную дату
+    private func getDeadlinesForSelectedDate() -> [SavedProject]? {
+        let calendar = Calendar.current
+        let startOfDay = calendar.startOfDay(for: selectedDate)
+        
+        let projectsWithDeadline = savedProjects.filter { project in
+            if let deadline = project.deadline {
+                return calendar.startOfDay(for: deadline) == startOfDay
+            }
+            return false
+        }
+        
+        return projectsWithDeadline.isEmpty ? nil : projectsWithDeadline
     }
 }
