@@ -43,14 +43,14 @@
 		AA6F17962D64A22300DED347 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA8655882D6E03B30063DE78 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		AA97B9232D5D1C890017C729 /* SecondView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondView.swift; sourceTree = "<group>"; };
-		AAE102D72D5BEBA00025A6C2 /* SplitUpApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SplitUpApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAE102D72D5BEBA00025A6C2 /* MySplitUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MySplitUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAE102DA2D5BEBA00025A6C2 /* SplitUpApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitUpApp.swift; sourceTree = "<group>"; };
 		AAE102DC2D5BEBA00025A6C2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AAE102DE2D5BEBA10025A6C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AAE102E12D5BEBA10025A6C2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		AAE102E72D5BEBA10025A6C2 /* SplitUpAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SplitUpAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAE102E72D5BEBA10025A6C2 /* MySplitUpTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MySplitUpTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAE102EB2D5BEBA10025A6C2 /* SplitUpAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitUpAppTests.swift; sourceTree = "<group>"; };
-		AAE102F12D5BEBA10025A6C2 /* SplitUpAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SplitUpAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAE102F12D5BEBA10025A6C2 /* MySplitUpUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MySplitUpUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAE102F52D5BEBA10025A6C2 /* SplitUpAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitUpAppUITests.swift; sourceTree = "<group>"; };
 		AAE102F72D5BEBA10025A6C2 /* SplitUpAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitUpAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		AAF74A892D6F0E7500A5859A /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
@@ -94,9 +94,9 @@
 		AAE102D82D5BEBA00025A6C2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AAE102D72D5BEBA00025A6C2 /* SplitUpApp.app */,
-				AAE102E72D5BEBA10025A6C2 /* SplitUpAppTests.xctest */,
-				AAE102F12D5BEBA10025A6C2 /* SplitUpAppUITests.xctest */,
+				AAE102D72D5BEBA00025A6C2 /* MySplitUp.app */,
+				AAE102E72D5BEBA10025A6C2 /* MySplitUpTests.xctest */,
+				AAE102F12D5BEBA10025A6C2 /* MySplitUpUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -145,9 +145,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AAE102D62D5BEBA00025A6C2 /* SplitUpApp */ = {
+		AAE102D62D5BEBA00025A6C2 /* MySplitUp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AAE102FB2D5BEBA10025A6C2 /* Build configuration list for PBXNativeTarget "SplitUpApp" */;
+			buildConfigurationList = AAE102FB2D5BEBA10025A6C2 /* Build configuration list for PBXNativeTarget "MySplitUp" */;
 			buildPhases = (
 				AAE102D32D5BEBA00025A6C2 /* Sources */,
 				AAE102D42D5BEBA00025A6C2 /* Frameworks */,
@@ -157,14 +157,14 @@
 			);
 			dependencies = (
 			);
-			name = SplitUpApp;
+			name = MySplitUp;
 			productName = SplitUpApp;
-			productReference = AAE102D72D5BEBA00025A6C2 /* SplitUpApp.app */;
+			productReference = AAE102D72D5BEBA00025A6C2 /* MySplitUp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		AAE102E62D5BEBA10025A6C2 /* SplitUpAppTests */ = {
+		AAE102E62D5BEBA10025A6C2 /* MySplitUpTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AAE102FE2D5BEBA10025A6C2 /* Build configuration list for PBXNativeTarget "SplitUpAppTests" */;
+			buildConfigurationList = AAE102FE2D5BEBA10025A6C2 /* Build configuration list for PBXNativeTarget "MySplitUpTests" */;
 			buildPhases = (
 				AAE102E32D5BEBA10025A6C2 /* Sources */,
 				AAE102E42D5BEBA10025A6C2 /* Frameworks */,
@@ -175,14 +175,14 @@
 			dependencies = (
 				AAE102E92D5BEBA10025A6C2 /* PBXTargetDependency */,
 			);
-			name = SplitUpAppTests;
+			name = MySplitUpTests;
 			productName = SplitUpAppTests;
-			productReference = AAE102E72D5BEBA10025A6C2 /* SplitUpAppTests.xctest */;
+			productReference = AAE102E72D5BEBA10025A6C2 /* MySplitUpTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		AAE102F02D5BEBA10025A6C2 /* SplitUpAppUITests */ = {
+		AAE102F02D5BEBA10025A6C2 /* MySplitUpUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AAE103012D5BEBA10025A6C2 /* Build configuration list for PBXNativeTarget "SplitUpAppUITests" */;
+			buildConfigurationList = AAE103012D5BEBA10025A6C2 /* Build configuration list for PBXNativeTarget "MySplitUpUITests" */;
 			buildPhases = (
 				AAE102ED2D5BEBA10025A6C2 /* Sources */,
 				AAE102EE2D5BEBA10025A6C2 /* Frameworks */,
@@ -193,9 +193,9 @@
 			dependencies = (
 				AAE102F32D5BEBA10025A6C2 /* PBXTargetDependency */,
 			);
-			name = SplitUpAppUITests;
+			name = MySplitUpUITests;
 			productName = SplitUpAppUITests;
-			productReference = AAE102F12D5BEBA10025A6C2 /* SplitUpAppUITests.xctest */;
+			productReference = AAE102F12D5BEBA10025A6C2 /* MySplitUpUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -221,7 +221,7 @@
 					};
 				};
 			};
-			buildConfigurationList = AAE102D22D5BEBA00025A6C2 /* Build configuration list for PBXProject "SplitUpApp" */;
+			buildConfigurationList = AAE102D22D5BEBA00025A6C2 /* Build configuration list for PBXProject "MySplitUp" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -234,9 +234,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AAE102D62D5BEBA00025A6C2 /* SplitUpApp */,
-				AAE102E62D5BEBA10025A6C2 /* SplitUpAppTests */,
-				AAE102F02D5BEBA10025A6C2 /* SplitUpAppUITests */,
+				AAE102D62D5BEBA00025A6C2 /* MySplitUp */,
+				AAE102E62D5BEBA10025A6C2 /* MySplitUpTests */,
+				AAE102F02D5BEBA10025A6C2 /* MySplitUpUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -304,12 +304,12 @@
 /* Begin PBXTargetDependency section */
 		AAE102E92D5BEBA10025A6C2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = AAE102D62D5BEBA00025A6C2 /* SplitUpApp */;
+			target = AAE102D62D5BEBA00025A6C2 /* MySplitUp */;
 			targetProxy = AAE102E82D5BEBA10025A6C2 /* PBXContainerItemProxy */;
 		};
 		AAE102F32D5BEBA10025A6C2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = AAE102D62D5BEBA00025A6C2 /* SplitUpApp */;
+			target = AAE102D62D5BEBA00025A6C2 /* MySplitUp */;
 			targetProxy = AAE102F22D5BEBA10025A6C2 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -434,27 +434,28 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SplitUpApp/Preview Content\"";
 				DEVELOPMENT_TEAM = 9L29AG9R55;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = SpitUp;
+				INFOPLIST_KEY_CFBundleDisplayName = MySpitUp;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.MichaelKorotkey.SplitUp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MySplitUp;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -466,27 +467,28 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SplitUpApp/Preview Content\"";
 				DEVELOPMENT_TEAM = 9L29AG9R55;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = SpitUp;
+				INFOPLIST_KEY_CFBundleDisplayName = MySpitUp;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.MichaelKorotkey.SplitUp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MySplitUp;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -509,7 +511,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SplitUpApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SplitUpApp";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MySplitUp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MySplitUp";
 			};
 			name = Debug;
 		};
@@ -529,7 +531,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SplitUpApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SplitUpApp";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MySplitUp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MySplitUp";
 			};
 			name = Release;
 		};
@@ -572,7 +574,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AAE102D22D5BEBA00025A6C2 /* Build configuration list for PBXProject "SplitUpApp" */ = {
+		AAE102D22D5BEBA00025A6C2 /* Build configuration list for PBXProject "MySplitUp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AAE102F92D5BEBA10025A6C2 /* Debug */,
@@ -581,7 +583,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AAE102FB2D5BEBA10025A6C2 /* Build configuration list for PBXNativeTarget "SplitUpApp" */ = {
+		AAE102FB2D5BEBA10025A6C2 /* Build configuration list for PBXNativeTarget "MySplitUp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AAE102FC2D5BEBA10025A6C2 /* Debug */,
@@ -590,7 +592,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AAE102FE2D5BEBA10025A6C2 /* Build configuration list for PBXNativeTarget "SplitUpAppTests" */ = {
+		AAE102FE2D5BEBA10025A6C2 /* Build configuration list for PBXNativeTarget "MySplitUpTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AAE102FF2D5BEBA10025A6C2 /* Debug */,
@@ -599,7 +601,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AAE103012D5BEBA10025A6C2 /* Build configuration list for PBXNativeTarget "SplitUpAppUITests" */ = {
+		AAE103012D5BEBA10025A6C2 /* Build configuration list for PBXNativeTarget "MySplitUpUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AAE103022D5BEBA10025A6C2 /* Debug */,
